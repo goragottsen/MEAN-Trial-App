@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -18,6 +19,8 @@ mongoose.connect("mongodb+srv://ana:Rfrltkf2794lub@cluster0-9cbiu.mongodb.net/no
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// Forwarding requests to access images folder
+app.use("/images", express.static(path.join("backend/images")));
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', "*"); // no matter which domain used, it's allowed to access the resources
@@ -27,6 +30,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use("/api/posts",postsRoutes); // filter to only urls starting with /api/posts
+app.use("/api/posts", postsRoutes); // filter to only urls starting with /api/posts
 
 module.exports = app;
