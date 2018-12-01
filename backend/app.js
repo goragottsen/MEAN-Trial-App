@@ -19,7 +19,7 @@ mongoose.connect("mongodb+srv://ana:Rfrltkf2794lub@cluster0-9cbiu.mongodb.net/no
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Forwarding requests to access images folder
+// Forwarding/allowing requests to access images folder
 app.use("/images", express.static(path.join("backend/images")));
 
 app.use((req, res, next) => {
